@@ -14,9 +14,20 @@
 		<p>Een systeem voor het gemakkelijk bijhouden van voedsel voordat het overdatum raakt.</p>
 		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
 			Voeg een product toe
-		</button><!-- <button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#exampleModal2">
+		</button>
+		<!-- <button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#exampleModal2">
 			Opslagruimte Toevoegen
-		</button> Je zou in de toekomst een pagina kunnen maken voor het aanmaken van een ruimte--><br><br>
+		</button> Je zou in de toekomst een pagina kunnen maken voor het aanmaken van een ruimte-->
+		<hr>
+		<form>
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="Vul in om te zoeken naar een product"
+					aria-label="Vul in om te zoeken naar een product" aria-describedby="zoeken">
+				<div class="input-group-append">
+					<input class="btn btn-outline-success" type="submit" value="zoeken" id="zoeken">
+				</div>
+			</div>
+		</form>
 		<div id="voedseloutput"></div>
 	</div>
 
@@ -35,31 +46,49 @@
 						<div class="form-row">
 							<div class="form-group col-6">
 								<label>Product</label>
-								<input class="form-control" type="text">
+								<input class="form-control" id="product" type="text">
 							</div>
 							<div class="form-group col-6">
-								<label>Aantal</label>
-								<input class="form-control" min="1" type="number">
+								<label>Aantal / Hoeveelheid</label>
+								<input class="form-control" id="aantal" min="0.1" type="number">
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="form-group col-6">
-								<label>Datum</label>
-								<input class="form-control" type="date">
+								<label>Houdbaarheidsdatum</label>
+								<input class="form-control" id="houdbaar" type="date">
 							</div>
 							<div class="form-group col-6">
 								<label>Opslagruimte</label>
-								<select class="form-control">
-									<option>Koelkast</option>
-									<option>Berging</option>
-								</select>
+								<div id="opslagplekoutput"></div>
 							</div>
 						</div>
+						<small><b>Opmerking</b> Vul bij een ingevroren product de houdbaarheidsdatum + 6 maanden in en
+							bekijk na deze periode of u dit wilt verlengen.</small>
 					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Anuleren</button>
-					<button type="button" class="btn btn-success">Product Toevoegen</button>
+					<button type="button" id="producttoevoeg" class="btn btn-success">Product Toevoegen</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal - Product Wijzigen -->
+	<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel2">Product Wijzigen</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" id="wijzigmodel">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Anuleren</button>
+					<button type="button" id="productwijzig" class="btn btn-warning">Product Wijzigen</button>
 				</div>
 			</div>
 		</div>
