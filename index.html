@@ -15,19 +15,18 @@
 		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
 			Voeg een product toe
 		</button>
+		<button type="button" class="btn btn-primary" onclick="laadlijst()">Herlaad Lijst</button>
 		<!-- <button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#exampleModal2">
 			Opslagruimte Toevoegen
 		</button> Je zou in de toekomst een pagina kunnen maken voor het aanmaken van een ruimte-->
 		<hr>
-		<form>
 			<div class="input-group mb-3">
-				<input type="text" class="form-control" placeholder="Vul in om te zoeken naar een product"
+				<input type="text" class="form-control" id="productzoek" placeholder="Vul in om te zoeken naar een product"
 					aria-label="Vul in om te zoeken naar een product" aria-describedby="zoeken">
 				<div class="input-group-append">
-					<input class="btn btn-outline-success" type="submit" value="zoeken" id="zoeken">
+					<button class="btn btn-outline-success" onClick="zoekproduct()">Zoek Product</button>
 				</div>
 			</div>
-		</form>
 		<div id="voedseloutput"></div>
 	</div>
 
