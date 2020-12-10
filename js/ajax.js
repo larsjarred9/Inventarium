@@ -45,7 +45,7 @@ $(document).ready(function () {
                 laadlijst();
             });
     });
-    
+
     $('#exampleModal').on('hidden.bs.modal', function () {
         $('.modal-body').find('lable,input,textarea').val('');
     });
@@ -60,10 +60,10 @@ function laadlijst() {
             var output = "<table class='table table-striped'><thead class='thead-dark'><tr><th>Product</th><th>Aantal</th><th>Houdbaarheidsdatum</th><th>Opslag</th><th></th><th></th><th></th></thead><tbody>";
             for (var i in data) {
                 output += "<tr><td>" + data[i].product + "</td><td>" + data[i].aantal + "</td><td>" + data[i].overdatum + "</td><td>" + data[i].name + "</td><td>";
-                if(data[i].aantal > 1) {
-                    output += "<button onclick='removeAantal(" + data[i].id + ", "+ data[i].aantal +")' class='btn btn-primary btn-sm'><b>-</b>";
+                if (data[i].aantal > 1) {
+                    output += "<button onclick='removeAantal(" + data[i].id + ", " + data[i].aantal + ")' class='btn btn-primary btn-sm'><b>-</b>";
                 }
-                output += "</button><button onclick='addAantal(" + data[i].id + ", "+ data[i].aantal +")' class='btn btn-primary btn-sm'><b>+</b></button></td><td><button onclick='veranderProduct(" + data[i].id + ")' class='btn btn-warning btn-sm'>Wijzigen</button></td><td><button onclick='verwijderProduct(" + data[i].id + ")' class='btn btn-danger btn-sm'>Verwijderen</button></td>";
+                output += "</button><button onclick='addAantal(" + data[i].id + ", " + data[i].aantal + ")' class='btn btn-primary btn-sm'><b>+</b></button></td><td><button onclick='veranderProduct(" + data[i].id + ")' class='btn btn-warning btn-sm'>Wijzigen</button></td><td><button onclick='verwijderProduct(" + data[i].id + ")' class='btn btn-danger btn-sm'>Verwijderen</button></td>";
                 output += "</tr>";
             }
             output += "</tbody></table>";
@@ -96,7 +96,7 @@ function veranderProduct(id) {
             $('#wijzigmodel').html(data);
             opslagladen(2);
             $('#exampleModal2').modal('toggle');
-        }); 
+        });
 }
 
 function opslagladen(aantal) {
@@ -150,4 +150,26 @@ function addAantal(id, aantal) {
         .done(function (data) {
             laadlijst();
         });
+}
+
+function zoekproduct() {
+    var zoek = $("#productzoek").val();
+    $.ajax({
+        url: "php/voedsel_inladen.php?id="+zoek,
+        dataType: "json"
+    })
+        .done(function (data) {
+            var output = "<table class='table table-striped'><thead class='thead-dark'><tr><th>Product</th><th>Aantal</th><th>Houdbaarheidsdatum</th><th>Opslag</th><th></th><th></th><th></th></thead><tbody>";
+            for (var i in data) {
+                output += "<tr><td>" + data[i].product + "</td><td>" + data[i].aantal + "</td><td>" + data[i].overdatum + "</td><td>" + data[i].name + "</td><td>";
+                if (data[i].aantal > 1) {
+                    output += "<button onclick='removeAantal(" + data[i].id + ", " + data[i].aantal + ")' class='btn btn-primary btn-sm'><b>-</b>";
+                }
+                output += "</button><button onclick='addAantal(" + data[i].id + ", " + data[i].aantal + ")' class='btn btn-primary btn-sm'><b>+</b></button></td><td><button onclick='veranderProduct(" + data[i].id + ")' class='btn btn-warning btn-sm'>Wijzigen</button></td><td><button onclick='verwijderProduct(" + data[i].id + ")' class='btn btn-danger btn-sm'>Verwijderen</button></td>";
+                output += "</tr>";
+            }
+            output += "</tbody></table>";
+            $("#voedseloutput").html(output);
+        });
+
 }
